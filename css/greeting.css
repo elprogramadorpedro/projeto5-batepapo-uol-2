@@ -1,0 +1,30 @@
+.enter-name-screen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15vh;
+}
+
+#enter-name-input{
+    text-align: center;
+    border: 1px solid #D7D7D7;
+    width: 261px;
+    height: 54px;
+    font-size: 16px;
+    color: #AEAEAE;
+}
+
+.enter-name-screen > button{
+    margin: 3vh 0 3vh 0;
+    background-color: #E7E7E7;
+    color: #696969;
+    border: none;
+    width: 109px;
+    height: 45px;
+    border-radius: 9px;
+}
+
+.enter-name-screen > p {
+    color: red;
+    text-align: center;
+}

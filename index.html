@@ -4,18 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/styles.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/greeting.css">
+    <link rel="stylesheet" href="/css/chat.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
+
+    <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>    
+    <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <main>
-        <img src="img/logo-uol.png" alt="logo">
-        <div id="enter-name-screen">
-            <input id="enter-name-input" type="text" placeholder="Digite seu nome">
-            <button type="submit" onclick="enterRoom()">Entrar</button>
-            <p id="error-message"></p>
-        </div>
+       <!--         first loads greeting.html        -->
+       <!-- after entering the room, loads chat.html -->
     </main>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/js/script.js"></script>
