@@ -1,6 +1,3 @@
-const mainElement = document.querySelector('main') 
-mainElement.innerHTML=`${loadHtmlFile('../greeting.html')}`
-
 const nameInputEl = document.querySelector('#enter-name-input')
 
 //Add 'Enter' keypress event listener to enter name 'input'
@@ -23,10 +20,15 @@ let enterRoom = () => {
         'https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants',
         {name: nameInputEl.value})
 
-    request.then(() => mainElement.innerHTML=`${loadHtmlFile('../chat.html')}`)
+    request.then(() => {
+        const bodyElement = document.querySelector('body') 
+        bodyElement.innerHTML=`${loadHtmlFile('../chat.html')}`
+        startChat(nameInputEl.value)
+    })
     request.catch((err) => {
         let errorMessage = document.querySelector('#error-message')
         errorMessage.innerHTML = 'Esse nome ja esta em uso :(<br> (ou input invalido)'
     })
 }
+
 

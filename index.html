@@ -19,11 +19,17 @@
     <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <main>
-       <!--         first loads greeting.html        -->
-       <!-- after entering the room, loads chat.html -->
-    </main>
+    <!-- after entering the room, replaces body innerHTML w/ chat.html -->
+    <div class="enter-name-screen">
+        <img src="img/logo-uol.png" alt="logo">
+        <div class="enter-name-screen">
+            <input id="enter-name-input" type="text" placeholder="Digite seu nome">
+            <button id="input-button" type="submit" onclick="enterRoom()">Entrar</button>
+            <p id="error-message"></p>
+        </div>
+        </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/js/script.js"></script>
+    <script src="/js/start.js"></script>
+    <script src="/js/chat.js"></script>
 </body>
 </html>

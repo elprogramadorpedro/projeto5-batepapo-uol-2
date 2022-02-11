@@ -7,17 +7,17 @@
 
 #enter-name-input{
     text-align: center;
-    border: 1px solid #D7D7D7;
+    border: 1px solid hsl(0, 0%, 84%);
     width: 261px;
     height: 54px;
     font-size: 16px;
-    color: #AEAEAE;
+    color: hsl(0, 0%, 68%);
 }
 
 .enter-name-screen > button{
     margin: 3vh 0 3vh 0;
-    background-color: #E7E7E7;
-    color: #696969;
+    background-color: hsl(0, 0%, 91%);
+    color: hsl(0, 0%, 41%);
     border: none;
     width: 109px;
     height: 45px;
@@ -25,6 +25,6 @@
 }
 
 .enter-name-screen > p {
-    color: red;
+    color: hsl(0, 100%, 50%);
     text-align: center;
 }
