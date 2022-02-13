@@ -1,19 +1,20 @@
-let chatUsername
-let selectedParticipantEl
+let chatUsername                //name of the current chat user        
+let selectedRecipientEl         //element referencing selected recipient in sidebar
 
-let selectedVisibilityEl
-let visibilityType = "message"
-let inputEl
+let selectedVisibilityEl        //element referencing 'publico' or 'reservadamente' in sidebar
+let visibilityType = "message"  //visibility type used to post message
+
+let inputEl                     //element referencing message text input
 
 function startChat(username){
     chatUsername = username
     loadMessages()
-    fetchParticipants()
-    addMessageEventListener()
+    loadParticipants()
+    addMessageInputEventListener()
 
     loop(maintainConnection, 5000)
     loop(loadMessages, 3000)
-    loop(fetchParticipants, 20000)
+    loop(loadParticipants, 20000)
 
     selectedVisibilityEl = document.getElementById('public_visibility')
 }
@@ -21,6 +22,7 @@ function startChat(username){
 let createMessage = function(message){
     const messageEl = document.createElement('div')
             messageEl.classList.add('message')
+            messageEl.setAttribute('data-identifier', "message")
 
             messageEl.innerHTML = `
                 <span class="message__time">(${message.time})</span>
@@ -51,14 +53,17 @@ function loadMessages(){
             if(message.to === chatUsername || message.to === 'Todos')
                 chatElement.appendChild(createMessage(message))
             window.scrollTo({top: document.body.scrollHeight});
-        }); 
+        })
+        console.log('Messages loaded')
     })
+    promise.catch((err) => console.log(err))
 }
 
 function createParticipant(name){
     const newParticipant = document.createElement('div') 
     newParticipant.classList.add('sidebar__item')
     newParticipant.onclick = function(){selectContact(this)}
+    newParticipant.setAttribute('data-identifier', "participant")
     newParticipant.innerHTML = `
         <ion-icon name="person-circle"></ion-icon>
         <h3>${name}</h3>
@@ -67,34 +72,32 @@ function createParticipant(name){
     return newParticipant
 }
 
-function fetchParticipants(){
+function loadParticipants(){
     const promise = axios.get('https://mock-api.driven.com.br/api/v4/uol/participants')
     promise.then((participants) => {
 
-        const contatos = document.querySelector('.sidebar__contatos')
-        contatos.innerHTML = ''
+        const sidebarParticipants = document.querySelector('.sidebar__participants')
+        sidebarParticipants.innerHTML = ''
 
-        selectedParticipantEl = createParticipant('Todos')
-        contatos.appendChild(selectedParticipantEl)
+        selectedRecipientEl = createParticipant('Todos')
+        sidebarParticipants.appendChild(selectedRecipientEl)
 
         participants.data.forEach(participant => {
             const newParticipant = createParticipant(participant.name)
             checkItem(newParticipant)
-            contatos.appendChild(newParticipant)
+            sidebarParticipants.appendChild(newParticipant)
         })
+        console.log('Participants loaded')
     })
+    promise.catch((err) => console.log(err))
 }
 
-async function maintainConnection(){ 
-    try{
-        await axios.post(
-            'https://mock-api.driven.com.br/api/v4/uol/status',
-            {name: chatUsername}
-        )
-        console.log('Connection maintained')
-    }catch(err){
-        console.log(err)
-    }
+function maintainConnection(){ 
+    const promise = axios.post('https://mock-api.driven.com.br/api/v4/uol/status',
+        {name: chatUsername})
+
+    promise.then(console.log('Connection maintained'))
+    promise.catch(err => console.log(err))
 }
 
 function toggleSidebar(){
@@ -127,10 +130,10 @@ let checkItem = (item) => {
 }
 
 function selectContact(currentParticipant){
-    if(selectedParticipantEl == currentParticipant) return
-    checkItem(selectedParticipantEl)
+    if(selectedRecipientEl == currentParticipant) return
+    checkItem(selectedRecipientEl)
     checkItem(currentParticipant)
-    selectedParticipantEl = currentParticipant
+    selectedRecipientEl = currentParticipant
 }
 
 function selectVisibility(currentVisibility){
@@ -143,22 +146,27 @@ function selectVisibility(currentVisibility){
 
 
 async function sendMessage(){
-    const reveiver = await selectedParticipantEl.querySelector('h3').textContent
-    try{
-        await axios.post('https://mock-api.driven.com.br/api/v4/uol/messages',
-        {
-            from: chatUsername,
-            to: reveiver,
-            text: inputEl.value,
-            type: visibilityType
-        })
+    const reveiver = await selectedRecipientEl.querySelector('h3').textContent
+    const promise = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages',
+    {
+        from: chatUsername,
+        to: reveiver,
+        text: inputEl.value,
+        type: visibilityType
+    })
+
+    promise.then(() => {
+        console.log('message sent')
         loadMessages()
-    }catch(err){
+    })
+
+    promise.catch(err => {
+        console.log(err)
         window.location.reload()
-    }
+    })   
 }
 
-async function addMessageEventListener(){
+async function addMessageInputEventListener(){
     inputEl = await document.querySelector('#input_message')
 
     //Add 'Enter' keypress event listener to send message 'input'

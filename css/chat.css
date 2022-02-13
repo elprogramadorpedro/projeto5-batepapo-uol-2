@@ -132,7 +132,7 @@ div.sidebar__body div.sidebar__item ion-icon.sidebar__item__check{
     font-size: 20px;
 }
 
-div.sidebar__body > .sidebar__contatos{
+div.sidebar__body > .sidebar__participants{
     margin-top: 4vh;
     height: 50vh;
     overflow: auto;

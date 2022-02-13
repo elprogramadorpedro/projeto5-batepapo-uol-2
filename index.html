@@ -23,12 +23,12 @@
     <div class="enter-name-screen">
         <img src="img/logo-uol.png" alt="logo">
         <div class="enter-name-screen">
-            <input id="enter-name-input" type="text" placeholder="Digite seu nome">
-            <button id="input-button" type="submit" onclick="enterRoom()">Entrar</button>
+            <input id="enter-name-input" type="text" placeholder="Digite seu nome" data-identifier="enter-name">
+            <button id="input-button" type="submit" onclick="enterRoom()" data-identifier="start">Entrar</button>
             <p id="error-message"></p>
         </div>
-    </div>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/start.js"></script>
     <script src="/js/chat.js"></script>
 </body>

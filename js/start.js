@@ -16,8 +16,8 @@ function loadHtmlFile(href){
 }
 
 let enterRoom = () => {
-    let request = axios.post(
-        'https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants',
+
+    let request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants',
         {name: nameInputEl.value})
 
     request.then(() => {
@@ -26,6 +26,7 @@ let enterRoom = () => {
         startChat(nameInputEl.value)
     })
     request.catch((err) => {
+        console.log(err)
         let errorMessage = document.querySelector('#error-message')
         errorMessage.innerHTML = 'Esse nome ja esta em uso :(<br> (ou input invalido)'
     })
