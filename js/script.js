@@ -16,7 +16,7 @@ nameInputEl.addEventListener("keyup", function(event) {
 });
 
 let enterRoom = () => {
-    let request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants',
+    let request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v4/uol/participants',
         {name: nameInputEl.value})
 
     const load = document.getElementById('load')
@@ -132,7 +132,6 @@ function maintainConnection(){
     const promise = axios.post('https://mock-api.driven.com.br/api/v4/uol/status',
         {name: chatUsername})
 
-    promise.then(console.log('Connection maintained'))
     promise.catch(err => console.log(err))
 }
 
