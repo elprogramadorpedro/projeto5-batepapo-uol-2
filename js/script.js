@@ -1,6 +1,13 @@
+let chatUsername                //name of the current chat user        
+let selectedRecipientEl         //element referencing selected recipient in sidebar
+
+let selectedVisibilityEl        //element referencing 'publico' or 'reservadamente' in sidebar
+let visibilityType = "message"  //visibility type used to post message
+
+let inputEl                     //element referencing message text input
+
 const nameInputEl = document.querySelector('#enter-name-input')
 
-//Add 'Enter' keypress event listener to enter name 'input'
 nameInputEl.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {                        // Number 13 is the "Enter" key on the keyboard          
       event.preventDefault();                          // Cancel the default action, if needed       
@@ -30,15 +37,8 @@ let enterRoom = () => {
     })
 }
 
-let chatUsername                //name of the current chat user        
-let selectedRecipientEl         //element referencing selected recipient in sidebar
 
-let selectedVisibilityEl        //element referencing 'publico' or 'reservadamente' in sidebar
-let visibilityType = "message"  //visibility type used to post message
-
-let inputEl                     //element referencing message text input
-
-function startChat(username){
+let startChat = function(username){
     chatUsername = username
     loadMessages()
     loadParticipants()
@@ -86,7 +86,6 @@ function loadMessages(){
                 chatElement.appendChild(createMessage(message))
             window.scrollTo({top: document.body.scrollHeight});
         })
-        console.log('Messages loaded')
     })
     promise.catch((err) => console.log(err))
 }
@@ -119,7 +118,6 @@ function loadParticipants(){
             checkItem(newParticipant)
             sidebarParticipants.appendChild(newParticipant)
         })
-        console.log('Participants loaded')
     })
     promise.catch((err) => console.log(err))
 }
@@ -134,7 +132,6 @@ function maintainConnection(){
 
 function toggleSidebar(){
     const sidebar = document.querySelector('sidebar')
-    const sidebarBody = sidebar.querySelector('.sidebar__body')
     const sidebarBackground = document.querySelector('.sidebar__background')
 
     //close sidebar when pressing 'esc'
@@ -146,7 +143,6 @@ function toggleSidebar(){
     });
 
     sidebar.classList.toggle('activated')
-    sidebarBody.classList.toggle('activated')
     sidebarBackground.classList.toggle('hidden')
 }
 

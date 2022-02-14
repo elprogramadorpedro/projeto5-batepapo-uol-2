@@ -85,54 +85,47 @@ header > ion-icon{
     font-size: 26px;
 }
 
-sidebar{
-    width: 100vw;
-    height: 100vh;
-    z-index: 3;
-    position: fixed;
-    right: -100vw;
-    transition: transform 500ms ease-in-out 25ms;
-}
 
-sidebar > div.sidebar__body{
+sidebar{
     width: 70vw;
     height: 100vh;
     background-color: hsl(0, 0%, 100%);
     z-index: 4;
-    position: relative;
-    right: -130vw;
+    position: fixed;
+    right: -100vw;
     display: flex;
     flex-direction: column;
     font-size: 16px;
+    transition: transform 500ms ease-in-out 25ms;
 }
 
-div.sidebar__body .sidebar__text{
+sidebar .sidebar__text{
     text-align: center; 
     font-weight: 700;
     padding-top: 6vh;
     padding-bottom: 3vh;
 }
 
-div.sidebar__body div.sidebar__item{
+sidebar div.sidebar__item{
     display:flex;
     align-items: center;
     margin: 7px 21px;
     position: relative;
 }
 
-div.sidebar__body div.sidebar__item ion-icon{
+sidebar div.sidebar__item ion-icon{
     font-size: 25px;
     margin-right: 9px
 }
 
-div.sidebar__body div.sidebar__item ion-icon.sidebar__item__check{
+sidebar div.sidebar__item ion-icon.sidebar__item__check{
     color: green;
     position: absolute;
     right: 0;
     font-size: 20px;
 }
 
-div.sidebar__body > .sidebar__participants{
+sidebar > .sidebar__participants{
     margin-top: 4vh;
     height: 50vh;
     overflow: auto;
@@ -140,10 +133,10 @@ div.sidebar__body > .sidebar__participants{
 
 div.sidebar__background{
     background-color: hsla(0, 0%, 0%, 0.6);
-    width: 30vw;
+    width: 100vw;
     height: 100vh;
     position: fixed;
-    z-index: 4;
+    z-index: 2;
     left: 0;
 }
 
