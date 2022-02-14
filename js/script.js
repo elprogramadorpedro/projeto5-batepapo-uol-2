@@ -57,6 +57,7 @@ let startChat = function(username){
 }
 
 let createMessage = function(message){
+    
     const messageEl = document.createElement('div')
             messageEl.classList.add('message')
             messageEl.setAttribute('data-identifier', "message")
@@ -67,7 +68,7 @@ let createMessage = function(message){
             `
 
             if(message.type === "private_message"){
-                messageEl.innerHTML += ' reservadamente '
+                messageEl.innerHTML += 'reservadamente '
                 messageEl.classList.add('message__private')
             }  
             if(message.type !== "status"){
@@ -168,6 +169,10 @@ function selectContact(currentParticipant){
     checkItem(currentParticipant)
     selectedRecipientEl = currentParticipant
     
+    if(selectedRecipientEl.querySelector('h3').textContent == "Todos"){
+        selectVisibility(document.getElementById('public_visibility'))
+    }
+
     const inputSubMessage = document.getElementById('input__submessage')
     inputSubMessage.textContent = `Enviando para 
     ${selectedRecipientEl.querySelector('h3').textContent}
@@ -176,6 +181,8 @@ function selectContact(currentParticipant){
 
 function selectVisibility(currentVisibility){
     if(selectedVisibilityEl === currentVisibility) return
+    if(currentVisibility.id === "private_visibility" && selectedRecipientEl.querySelector('h3').textContent === "Todos") return
+
     checkItem(selectedVisibilityEl)
     checkItem(currentVisibility)
     selectedVisibilityEl = currentVisibility
