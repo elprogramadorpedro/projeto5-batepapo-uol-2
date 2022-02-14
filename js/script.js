@@ -19,6 +19,9 @@ let enterRoom = () => {
     let request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants',
         {name: nameInputEl.value})
 
+    const load = document.getElementById('load')
+    load.classList.toggle('hidden')
+
     request.then(() => {
         const header = document.querySelector('header') 
         const messageBox = document.querySelector('.message_box')
@@ -28,10 +31,12 @@ let enterRoom = () => {
         messageBox.classList.remove('hidden')
         enterNameScreen.classList.add('hidden')
 
+        load.classList.toggle('hidden')
         startChat(nameInputEl.value)
     })
     request.catch((err) => {
         console.log(err)
+        load.classList.toggle('hidden')
         let errorMessage = document.querySelector('#error-message')
         errorMessage.innerHTML = 'Esse nome ja esta em uso :(<br> (ou input invalido)'
     })

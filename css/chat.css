@@ -83,7 +83,7 @@ header > ion-icon{
     margin-bottom: 2vh;
 }
 
-#input__div  > ion-icon{
+div.message_box  > ion-icon{
     font-size: 26px;
 }
 
