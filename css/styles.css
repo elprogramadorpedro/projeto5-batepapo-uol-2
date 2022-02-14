@@ -35,6 +35,11 @@ body{
     border-radius: 9px;
 }
 
+.enter-name-screen > button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 .enter-name-screen > p {
     color: hsl(0, 100%, 50%);
     text-align: center;

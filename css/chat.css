@@ -13,7 +13,9 @@ header{
 header > img{
     width: 75px;
     height: 53px;
+    cursor: pointer;
 }
+
 
 header > ion-icon{
     font-size: 42px;
