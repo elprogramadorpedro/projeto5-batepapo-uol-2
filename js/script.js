@@ -124,6 +124,8 @@ function loadParticipants(){
             checkItem(newParticipant)
             sidebarParticipants.appendChild(newParticipant)
         })
+        selectVisibility(document.getElementById('public_visibility'))
+        updateInputSubMessage()
     })
     promise.catch((err) => console.log(err))
 }
@@ -172,10 +174,7 @@ function selectContact(currentParticipant){
         selectVisibility(document.getElementById('public_visibility'))
     }
 
-    const inputSubMessage = document.getElementById('input__submessage')
-    inputSubMessage.textContent = `Enviando para 
-    ${selectedRecipientEl.querySelector('h3').textContent}
-    (${selectedVisibilityEl.querySelector('h3').textContent})`
+    updateInputSubMessage()
 }
 
 function selectVisibility(currentVisibility){
@@ -187,6 +186,10 @@ function selectVisibility(currentVisibility){
     selectedVisibilityEl = currentVisibility
     visibilityType = (visibilityType === "message") ? "private_message" : "message" 
 
+    updateInputSubMessage()
+}
+
+function updateInputSubMessage(){
     const inputSubMessage = document.getElementById('input__submessage')
     inputSubMessage.textContent = `Enviando para 
     ${selectedRecipientEl.querySelector('h3').textContent}
