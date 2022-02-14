@@ -162,6 +162,11 @@ function selectContact(currentParticipant){
     checkItem(selectedRecipientEl)
     checkItem(currentParticipant)
     selectedRecipientEl = currentParticipant
+    
+    const inputSubMessage = document.getElementById('input__submessage')
+    inputSubMessage.textContent = `Enviando para 
+    ${selectedRecipientEl.querySelector('h3').textContent}
+    (${selectedVisibilityEl.querySelector('h3').textContent})`
 }
 
 function selectVisibility(currentVisibility){
@@ -170,6 +175,11 @@ function selectVisibility(currentVisibility){
     checkItem(currentVisibility)
     selectedVisibilityEl = currentVisibility
     visibilityType = (visibilityType === "message") ? "private_message" : "message" 
+
+    const inputSubMessage = document.getElementById('input__submessage')
+    inputSubMessage.textContent = `Enviando para 
+    ${selectedRecipientEl.querySelector('h3').textContent}
+    (${selectedVisibilityEl.querySelector('h3').textContent})`
 }
 
 

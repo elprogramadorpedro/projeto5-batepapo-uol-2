@@ -74,17 +74,24 @@ header > ion-icon{
     z-index: 2;
 }
 
-.message_box > input{
+#input__div  > input{
     border: none;
     font-size: 17px;
     height: 100%;
     width: 95%;
+    padding-top: 1vh;
+    margin-bottom: 2vh;
 }
 
-.message_box > ion-icon{
+#input__div  > ion-icon{
     font-size: 26px;
 }
 
+#input__div > p{
+   font-size: 14px;
+   font-weight: 300;
+   color: #717171;
+}
 
 sidebar{
     width: 70vw;
